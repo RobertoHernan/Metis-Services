@@ -9,16 +9,18 @@ use App\Filament\Resources\Categorias\Schemas\CategoriaForm;
 use App\Filament\Resources\Categorias\Tables\CategoriasTable;
 use App\Models\Categoria;
 use BackedEnum;
+use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 class CategoriaResource extends Resource
 {
     protected static ?string $model = Categoria::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-tag';
+    protected static UnitEnum|string|null  $navigationGroup = 'Gestión Comercial';
+    protected static ?int                 $navigationSort = 3;
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -34,9 +36,7 @@ class CategoriaResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

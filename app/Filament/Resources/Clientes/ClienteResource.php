@@ -9,16 +9,19 @@ use App\Filament\Resources\Clientes\Schemas\ClienteForm;
 use App\Filament\Resources\Clientes\Tables\ClientesTable;
 use App\Models\Cliente;
 use BackedEnum;
+use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 class ClienteResource extends Resource
 {
     protected static ?string $model = Cliente::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    /** Navegación (TIPOS EXACTOS DE FILAMENT v4) */
+    protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-users';
+    protected static UnitEnum|string|null  $navigationGroup = 'Gestión Comercial';
+    protected static ?int                 $navigationSort = 1;
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -34,9 +37,7 @@ class ClienteResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

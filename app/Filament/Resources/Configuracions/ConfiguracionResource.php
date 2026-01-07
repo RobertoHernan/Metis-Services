@@ -9,16 +9,19 @@ use App\Filament\Resources\Configuracions\Schemas\ConfiguracionForm;
 use App\Filament\Resources\Configuracions\Tables\ConfiguracionsTable;
 use App\Models\Configuracion;
 use BackedEnum;
+use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 class ConfiguracionResource extends Resource
 {
     protected static ?string $model = Configuracion::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static ?string              $navigationLabel = 'Configuración';
+    protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static UnitEnum|string|null  $navigationGroup = 'Sistema';
+    protected static ?int                 $navigationSort = 99;
 
     protected static ?string $recordTitleAttribute = 'clave';
 
@@ -34,9 +37,7 @@ class ConfiguracionResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
