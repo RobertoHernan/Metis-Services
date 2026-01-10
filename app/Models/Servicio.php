@@ -6,21 +6,44 @@ use Illuminate\Database\Eloquent\Model;
 
 class Servicio extends Model
 {
-    protected $fillable = [
-        'nombre',
-        'precio',
-        'categoria_id',
-        'unidad_medida_id',
-        'activo',
-    ];
+    protected $table = 'servicios';
 
-    public function categoria()
+    protected $fillable = [
+        'codigo',
+        'nombre',
+        'descripcion',
+
+        'tipo_de_item_code',
+        'codigo_de_tipo_de_servicio_medico_code',
+
+        'duracion_estimada',
+        'requiere_profesional',
+
+        'precio_base',
+        'precio_minimo',
+        'precio_maximo',
+
+        'gravado',
+        'exento',
+        'porcentaje_iva',
+
+        'observaciones',
+
+        'status',
+        'active',
+    ];
+    
+    public function tipoDeItem()
     {
-        return $this->belongsTo(Categoria::class);
+        return $this->belongsTo(TipoDeItem::class, 'tipo_de_item_code', 'code');
     }
 
-    public function unidadMedida()
+    public function tipoServicioMedico()
     {
-        return $this->belongsTo(UnidadMedida::class);
+        return $this->belongsTo(
+            CodigoDeTipoDeServicioMedico::class,
+            'codigo_de_tipo_de_servicio_medico_code',
+            'code'
+        );
     }
 }

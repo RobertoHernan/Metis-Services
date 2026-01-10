@@ -19,10 +19,10 @@ class ServicioResource extends Resource
     protected static ?string $model = Servicio::class;
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-briefcase';
-    protected static UnitEnum|string|null  $navigationGroup = 'Gestión Comercial';
-    protected static ?int                 $navigationSort = 2;
+    protected static UnitEnum|string|null $navigationGroup = 'Operación';
+    protected static ?int $navigationSort = 2;
 
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?string $recordTitleAttribute = 'nombre';
 
     public static function form(Schema $schema): Schema
     {
@@ -42,9 +42,9 @@ class ServicioResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListServicios::route('/'),
+            'index'  => ListServicios::route('/'),
             'create' => CreateServicio::route('/create'),
-            'edit' => EditServicio::route('/{record}/edit'),
+            'edit'   => EditServicio::route('/{record}/edit'),
         ];
     }
 }

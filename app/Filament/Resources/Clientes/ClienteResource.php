@@ -18,12 +18,11 @@ class ClienteResource extends Resource
 {
     protected static ?string $model = Cliente::class;
 
-    /** Navegación (TIPOS EXACTOS DE FILAMENT v4) */
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-users';
-    protected static UnitEnum|string|null  $navigationGroup = 'Gestión Comercial';
-    protected static ?int                 $navigationSort = 1;
+    protected static UnitEnum|string|null $navigationGroup = 'Operación';
+    protected static ?int $navigationSort = 1;
 
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?string $recordTitleAttribute = 'nombre';
 
     public static function form(Schema $schema): Schema
     {
@@ -43,9 +42,9 @@ class ClienteResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListClientes::route('/'),
+            'index'  => ListClientes::route('/'),
             'create' => CreateCliente::route('/create'),
-            'edit' => EditCliente::route('/{record}/edit'),
+            'edit'   => EditCliente::route('/{record}/edit'),
         ];
     }
 }

@@ -2,14 +2,11 @@
 
 namespace App\Filament\Resources\Servicios\Tables;
 
-use Filament\Tables\Columns\BadgeColumn;
-use Filament\Schemas\Schema;
-
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
 
 class ServiciosTable
 {
@@ -17,48 +14,29 @@ class ServiciosTable
     {
         return $table
             ->columns([
+                TextColumn::make('codigo')
+                    ->label('Código')
+                    ->searchable(),
+
                 TextColumn::make('nombre')
-                    ->label('Servicio')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('categoria.nombre')
-                    ->label('Categoría')
-                    ->sortable()
-                    ->toggleable(),
-                TextColumn::make('unidadMedida.nombre')
-                    ->label('Unidad de medida')
-                    ->sortable()
-                    ->toggleable(),
-                BadgeColumn::make('activo')
-                    ->label('Estado')
-                    ->colors([
-                        'success' => true,
-                        'danger' => false,
-                    ])
-                    ->formatStateUsing(fn (bool $state) => $state ? 'Activo' : 'Inactivo'),
-                TextColumn::make('precio')
+                    ->label('Nombre')
+                    ->searchable(),
+
+                TextColumn::make('tipoDeItem.name')
+                    ->label('Tipo de ítem'),
+
+                TextColumn::make('precio_base')
                     ->label('Precio')
-                    ->money('USD')
-                    ->sortable(),    
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
+                    ->money('USD'),
+
+                IconColumn::make('active')
+                    ->label('Activo')
+                    ->boolean(),
             ])
             ->recordActions([
                 EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                DeleteAction::make()
+                    ->requiresConfirmation(),
             ]);
     }
 }

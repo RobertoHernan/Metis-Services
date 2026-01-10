@@ -18,10 +18,9 @@ class ConfiguracionResource extends Resource
 {
     protected static ?string $model = Configuracion::class;
 
-    protected static ?string              $navigationLabel = 'Configuración';
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-cog-6-tooth';
-    protected static UnitEnum|string|null  $navigationGroup = 'Sistema';
-    protected static ?int                 $navigationSort = 99;
+    protected static UnitEnum|string|null $navigationGroup = 'Sistema';
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $recordTitleAttribute = 'clave';
 
@@ -43,9 +42,9 @@ class ConfiguracionResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListConfiguracions::route('/'),
+            'index'  => ListConfiguracions::route('/'),
             'create' => CreateConfiguracion::route('/create'),
-            'edit' => EditConfiguracion::route('/{record}/edit'),
+            'edit'   => EditConfiguracion::route('/{record}/edit'),
         ];
     }
 }

@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Filament\Resources\UnidadMedidas\Tables;
+namespace App\Filament\Resources\TipoDeItems\Tables;
 
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Actions\EditAction;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
 
-class UnidadMedidasTable
+class TipoDeItemsTable
 {
     public static function configure(Table $table): Table
     {
@@ -28,8 +30,13 @@ class UnidadMedidasTable
             ])
             ->recordActions([
                 EditAction::make(),
-                DeleteAction::make() 
+                DeleteAction::make()
                     ->requiresConfirmation(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
             ]);
     }
 }
